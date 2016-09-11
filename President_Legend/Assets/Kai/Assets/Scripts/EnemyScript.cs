@@ -18,11 +18,16 @@ public class EnemyScript : MonoBehaviour
         {
            Enemy_move();
         }
+
+        GetComponent<Rigidbody2D>().WakeUp();
     }
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.tag == "Player") 
         {
+            Player player = other.GetComponent<Player>();
+            if (!player.isTackle) return;
+
             Debug.Log(other.gameObject.name);
             hit_flag = true;
         }
