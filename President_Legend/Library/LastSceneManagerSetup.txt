@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Aizawa/Scenes/Main.unity
+- path: Assets/Kai/Assets/Scenes/KaiScene.unity
   isLoaded: 1
   isActive: 1
