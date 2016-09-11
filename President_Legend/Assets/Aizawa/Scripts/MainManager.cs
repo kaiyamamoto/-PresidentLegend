@@ -9,6 +9,16 @@ public class MainManager : MonoBehaviour
 
     public static MainManager instance;
 
+    private bool resultCoroutineFlag = false;
+
+    public bool isGameFinish = false;
+
+    public bool isGameClear = false;
+
+    public GameObject Clear;
+
+    public GameObject Over;
+
     void Awake()
     {
         if (instance == null)
@@ -28,7 +38,32 @@ public class MainManager : MonoBehaviour
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+        if(isGameFinish)
+        {
+            resultCoroutineFlag = true;
+        }
+
+        if(resultCoroutineFlag)
+        {
+            StartCoroutine(result());
+        }
 	}
+    IEnumerator result()
+    {
+        yield return new WaitForSeconds(2);
+
+        // 出す
+        if(isGameClear)
+        {
+            Instantiate(Clear);
+        }
+        else
+        {
+            Instantiate(Over);
+        }
+
+        resultCoroutineFlag = false;
+    }
 }
